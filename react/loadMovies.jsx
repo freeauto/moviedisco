@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
 import Movies from './Movies.jsx'
 
+
 function render() {
     ReactDOM.render(
-        <AppContainer><Movies /></AppContainer>,
+        <AppContainer>
+          <Movies />
+        </AppContainer>,
         document.getElementById('movies')
     )
 }
