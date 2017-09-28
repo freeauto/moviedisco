@@ -1,0 +1,21 @@
+{% extends "_base.html" %}
+
+{% block content %}
+    <section id="contact" class="container content-section">
+        <div class="col-lg-8 col-lg-offset-2">
+            <h1>React</h1>
+            <div id="thing"></div>
+        </div>
+    </section>
+{% endblock %}
+
+
+{% block extra_body %}
+    <script>
+    SERVER_DATA = {{ server_data|escapejs }}
+    </script>
+
+    <script src="https://unpkg.com/react@15.4.2/dist/react.min.js"></script>
+    <script src="https://unpkg.com/react-dom@15.4.2/dist/react-dom.min.js"></script>
+    {{ 'loadThing.js'|js_hot_include }}
+{% endblock %}
