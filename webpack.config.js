@@ -8,7 +8,7 @@ var IS_PROD = process.env.NODE_ENV == 'production'
 
 module.exports = {
     entry: {
-        loadThing: './react/loadThing'
+        loadMovies: './react/loadMovies'
     },
     output: {
         path: path.resolve(__dirname, './assets/compiled'),
