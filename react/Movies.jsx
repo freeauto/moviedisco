@@ -72,10 +72,11 @@ export default class Movies extends React.Component {
     }
   }
 
-  onSearch_() {
+  onSearch_(e) {
     console.warn(this.refs.search.value)
     this.setState({search: this.refs.search.value})
-    this.requestPage(1)
+    this.requestPage(1, this.refs.search.value)
+    e.preventDefault()
   }
 
   onHideModal_() {
@@ -95,13 +96,13 @@ export default class Movies extends React.Component {
     this.requestPage(this.state.page - 1)
   }
 
-  requestPage(page) {
+  requestPage(page, search_) {
     let _this = this
     this.setState({loading: true})
     let {search} = this.state
     let url = null
-    if (search)
-      url = '/api/search?page=' + page + '&query=' + encodeURIComponent(search)
+    if (search_ || search)
+      url = '/api/search?page=' + page + '&query=' + encodeURIComponent(search_ || search)
     else
       url = '/api/popular?page=' + page
     $.get(url, function(data) {
@@ -138,7 +139,7 @@ export default class Movies extends React.Component {
     let {page, loading, modal} = this.state
 
     return <div>
-      <div className="form-horizontal">
+      <form className="form-horizontal" onSubmit={this.onSearch_}>
         <FormGroup label="Find a movie">
           <div className="open dropdown">
             <input type="text" ref="search" className="form-control" placeholder="Start typing a movie (example: Inception)" autoFocus />
@@ -147,7 +148,7 @@ export default class Movies extends React.Component {
         <FormGroup>
            <button className="btn btn-info btn-lg pull-right" onClick={this.onSearch_} >Search &raquo;</button>
         </FormGroup>
-      </div>
+      </form>
 
       <div className="dimmed">
         {page > 0 && this.renderResults()}
