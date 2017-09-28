@@ -6,8 +6,8 @@ from alembic.config import Config
 
 LOCALDEV_PORT = 8080
 
-NAME = 'MVP'
-ROOT_URL_PROD = 'http://mvp.baylaunch.com'
+NAME = 'MovieDisco'
+ROOT_URL_PROD = 'http://moviedisco.baylaunch.com'
 ROOT_URL_DEV = 'http://localhost:%d' % LOCALDEV_PORT
 
 IS_REAL_PROD = os.environ.get('COMMIT') is not None
